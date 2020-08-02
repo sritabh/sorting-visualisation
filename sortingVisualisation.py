@@ -8,8 +8,8 @@ bar_containerW = 1366
 bar_width = 20
 bar_startX = 100
 bar_bottom = 525 #bottom y coordinate of bar,less than this will increase height
-bar_minY = 300 #y cordinates when value is minimum
-bar_min_maxH = 175 #diff between max and min height a bar can have
+bar_minY = 500 #y cordinates when value is minimum
+bar_min_maxH = 300 #diff between max and min height a bar can have
 anim_sleep = 0.005
 bar_min_movement = 0.5
 graph_canvas = Canvas(window, width=bar_containerW, height=bar_containerH)
@@ -23,7 +23,7 @@ class Bar:
         self.index = index
         self.xPos = bar_startX + bar_width*index
         self.yPos = bar_minY - bar_min_maxH*(val/max_val)
-        self.bar = graph_canvas.create_rectangle(self.xPos,self.yPos,self.xPos+bar_width,bar_bottom,outline="black", fill="blue")
+        self.bar = graph_canvas.create_rectangle(self.xPos,self.yPos,self.xPos+bar_width,bar_bottom,outline="#2b2b2b", fill="#38a1f2")
         self.label = graph_canvas.create_text(self.xPos+10,self.yPos-20,text=self.val,angle=90,fill="#4a4a4a",font=("Helvetica", 8, "bold"))
         self.indexLabel = graph_canvas.create_text(self.xPos+10,bar_bottom+15,text=index+1,fill="#4a4a4a",font=("Helvetica", 8, "bold"))
     def moveBar(self,new_index):
@@ -53,6 +53,7 @@ def smoothMove(obj,newPos):
             if obj.index <= newPos:
                 break
 def insertionSort(objectList,size):
+    graph_canvas.create_text(bar_containerW/2,bar_containerH-150,text="Insertion Sort",fill="#777a78",font=("Times", 23, "bold"))
     for i in range(0,len(objectList)):
         j=i
         while j>0:
@@ -66,6 +67,7 @@ def insertionSort(objectList,size):
             j = j-1
                 
 def selectionSort(objectList,size):
+    graph_canvas.create_text(bar_containerW/2,bar_containerH-150,text="Selection Sort",fill="#777a78",font=("Times", 23, "bold"))
     for i in range(0,size):
         min_idx = i
         for j in range(i+1,size):

@@ -3,14 +3,14 @@ import tkinter as tk
 import time
 window = tk.Tk()
 window.title("Sorting Algorithm Visualisation")
-bar_containerH = 768
-bar_containerW = 1366
+bar_containerH = 768 #screen height
+bar_containerW = 1366 #screen size
 bar_width = 20
 bar_startX = 100
 bar_bottom = 525 #bottom y coordinate of bar,less than this will increase height
 bar_minY = 500 #y cordinates when value is minimum
 bar_min_maxH = 300 #diff between max and min height a bar can have
-anim_sleep = 0.005
+anim_sleep = 0.03
 bar_min_movement = 0.5
 graph_canvas = Canvas(window, width=bar_containerW, height=bar_containerH)
 lineX_axis = graph_canvas.create_line(60,527,1300,527,width=2,fill="#4a4a4a")
@@ -77,44 +77,19 @@ def selectionSort(objectList,size):
         smoothMove(objectList[min_idx],i)
         objectList[i],objectList[min_idx] = objectList[min_idx],objectList[i]
 
-def merge(arr, l, m, r): 
-    n1 = m - l + 1
-    n2 = r- m 
-    L = [0] * (n1) 
-    R = [0] * (n2) 
-    for i in range(0 , n1): 
-        L[i] = arr[l + i] 
-  
-    for j in range(0 , n2): 
-        R[j] = arr[m + 1 + j] 
-  
-    i = 0     # Initial index of first subarray 
-    j = 0     # Initial index of second subarray 
-    k = l     # Initial index of merged subarray 
-    while i < n1 and j < n2 : 
-        if L[i].val <= R[j].val:
-            arr[k] = L[i]
-            i += 1
-        else: 
-            arr[k] = R[j] 
-            j += 1
-        k += 1
-    while i < n1: 
-        arr[k] = L[i] 
-        i += 1
-        k += 1
-    while j < n2: 
-        arr[k] = R[j] 
-        j += 1
-        k += 1
-def mergeSort(arr,l,r): 
-    if l < r: 
-        m = (l+(r-1))//2
-        mergeSort(arr, l, m) 
-        mergeSort(arr, m+1, r) 
-        merge(arr, l, m, r) 
-  
- 
+def bubbleSort(objectList,size):
+    graph_canvas.create_text(bar_containerW/2,bar_containerH-150,text="Bubble Sort",fill="#777a78",font=("Times", 23, "bold"))
+    for i in range(0,size):
+        swap = False
+        for j in range(0,size-i-1):
+            if objectList[j].val > objectList[j+1].val:
+                smoothMove(objectList[j],j+1)
+                smoothMove(objectList[j+1],j)
+                objectList[j],objectList[j+1] = objectList[j+1],objectList[j]
+                swap = True
+        if not swap:
+            break
+
 def main():
     array = [26,50,71,80,80,77,60,90,24,38,72,60,100,80,62,3,98,97,14,56,1,7,36,39,24,67,99,16,41,51,51,11,7,79,9,43,67,85,23,12]
     maxVal = max(array)
@@ -124,7 +99,8 @@ def main():
         objList.append(Bar(i,array[i],maxVal))
     ##
     #insertionSort(objList,size)
-    selectionSort(objList,size)
+    #selectionSort(objList,size)
+    bubbleSort(objList,size)
 if __name__=="__main__":
     main()
 window.mainloop()

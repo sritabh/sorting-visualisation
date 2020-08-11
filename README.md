@@ -5,3 +5,7 @@ This project can display the array sorting algorithm step by step using TK inter
 ![](SelectionSort.gif)
 ### InsertionSort Algorithm
 ![](InsertionSort.gif)
+### BubbleSort Algorithm
+![](BubbleSort.gif)
+
+_Speed of the swap is not same for all sorting method above_

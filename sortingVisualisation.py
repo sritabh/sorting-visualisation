@@ -10,8 +10,8 @@ bar_startX = 100
 bar_bottom = 525 #bottom y coordinate of bar,less than this will increase height
 bar_minY = 500 #y cordinates when value is minimum
 bar_min_maxH = 300 #diff between max and min height a bar can have
-anim_sleep = 0.03
-bar_min_movement = 0.5
+anim_sleep = 0.03 #sleep time between loops in sec
+bar_min_movement = 0.5 #pixel to move less the pixels more  soft movement
 graph_canvas = Canvas(window, width=bar_containerW, height=bar_containerH)
 lineX_axis = graph_canvas.create_line(60,527,1300,527,width=2,fill="#4a4a4a")
 lineY_axis = graph_canvas.create_line(60,527,60,27,width=2,fill="#4a4a4a")
